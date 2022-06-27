@@ -17,8 +17,8 @@ public class Document {
   @Column(name="issue_date", nullable = false)
   private Date issueDate;
 
-  @OneToMany(mappedBy = "document")
-  private List<DocItem> docItems;
+  //@OneToMany(mappedBy = "document")
+  //private List<DocItem> docItems;
 
 
   public String getNumber() {

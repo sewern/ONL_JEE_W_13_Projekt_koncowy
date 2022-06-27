@@ -1,6 +1,5 @@
 package pl.coderslab.finalproj.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +19,7 @@ import javax.persistence.EntityManagerFactory;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.coderslab.finalproj")
+//@ComponentScan(basePackages={"pl.coderslab.finalproj.controller", "pl.coderslab.finalproj.model", "pl.coderslab.finalproj.repository"})
 @EnableTransactionManagement
 public class AppConfig implements WebMvcConfigurer {
 
@@ -51,7 +51,8 @@ public class AppConfig implements WebMvcConfigurer {
 
   @Override
   public void configureViewResolvers(ViewResolverRegistry registry) {
-    registry.jsp("/WEB-INF/view/", ".jsp");
+    //registry.jsp("/WEB-INF/view/", ".jsp");
+    registry.jsp("/WEB-INF/", ".jsp");
   }
 
   @Override
