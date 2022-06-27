@@ -16,6 +16,9 @@ public class DocItem {
   @Column//(nullable = false)
   private String name;
 
+  @Column//(nullable = false)
+  private Integer quantity;
+
   //@ManyToOne(fetch = FetchType.EAGER)
   //@JoinColumn(insertable = false, updatable = false)
   //private Doc doc;
@@ -37,6 +40,10 @@ public class DocItem {
   public void setName(String name) {
     this.name = name;
   }
+
+  public Integer getQuantity() { return quantity; }
+
+  public void setQuantity(Integer quantity) { this.quantity = quantity; }
 
   @Override
   public String toString() {

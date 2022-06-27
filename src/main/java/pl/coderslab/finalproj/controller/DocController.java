@@ -11,6 +11,8 @@ import pl.coderslab.finalproj.model.Doc;
 import pl.coderslab.finalproj.model.DocItem;
 import pl.coderslab.finalproj.repository.DocDao;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller
@@ -40,17 +42,27 @@ public class DocController {
     return "/doc/list";
   }
 
-  @RequestMapping(value = {"/show/{id}", "/show//{id}/{option}"})
-  String show(@PathVariable Long id, @PathVariable(required=false) String option, Model model) {
+  @RequestMapping(value = {"/show/{id}", "/show/{id}/{option}"})
+  String show(@PathVariable Long id, @PathVariable(required=false) String option, Model model){
     Doc doc= docDao.get(id);
-    if (option != null)
+    model.addAttribute("doc", doc);
+    /*if (option != null)
       model.addAttribute("message",
         switch (option) {
           case "delete" -> "Potwierdź usunięcie";
           case "success" -> "Sukces";
           default -> throw new IllegalArgumentException(option);
-        });
+        });*/
+    model.addAttribute("option", option);
     return "/doc/show";
+  }
+
+  @RequestMapping(value = {"/show/{id}/delete"}, method = RequestMethod.POST, params= "delete")
+  String delete(@PathVariable Long id){
+    Doc doc= docDao.get(id);
+    docDao.delete(doc);
+    // Powrót do listy
+    return "redirect:/doc";
   }
 
   @RequestMapping(value = {"/edit", "/edit/{id}"})
