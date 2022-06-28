@@ -6,7 +6,7 @@
   <title>Document</title>
 </head>
 <body>
-<form:form modelAttribute="doc" path="/doc/edit" method="post">
+<form:form modelAttribute="doc" action="/doc/edit" method="post">
   ${completeError}
 
   <form:errors path="*">
